@@ -1,12 +1,19 @@
-(function () {
+(function (APP) {
 
-	window.onload = function () {
+	if (window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
+	    httpRequest = new XMLHttpRequest();
+	} else if (window.ActiveXObject) { // IE 6 and older
+	    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+
+	APP.viewTemplate = function (file_name) {
+		var file_name = file_name  || "user";
+		httpRequest.open("GET", "http://localhost:5555/templates/" + file_name + ".html", true);
+		httpRequest.send();
+	};
+	// window.onload = function () {
 		// Old compatibility code, no longer needed.
-		if (window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
-		    httpRequest = new XMLHttpRequest();
-		} else if (window.ActiveXObject) { // IE 6 and older
-		    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-		}
+		
 
 		httpRequest.onreadystatechange = function (res){
 		   
@@ -14,14 +21,17 @@
 		    //then append it to the dom
 		    var frag = document.createDocumentFragment();
 		    var tmp_div = document.createElement("div");
+		    var main_content = document.getElementById("main");
 
 		    if (httpRequest.readyState === XMLHttpRequest.DONE) {
 				
 				if (httpRequest.status === 200) {
 					
+
 					tmp_div.innerHTML = httpRequest.responseText;
 					frag.appendChild(tmp_div);
-					document.getElementById("main").appendChild(frag);
+					main_content.innerHTML = "";
+					main_content.appendChild(frag);
 				} 
 				else {
 					console.log('There was a problem with the request.');
@@ -29,10 +39,9 @@
 			}
 		};
 
-		httpRequest.open('GET', 'http://localhost:5555/templates/user.html', true);
 		
-		httpRequest.send();
-	};
+		
+	// };
 	
 
-})();
+})(window.APP || (window.APP = {}));
