@@ -19,6 +19,7 @@ let options = {
 	// auth: {
  //        authdb: "admin"
  //    }
+	promiseLibrary: global.Promise
 }
 
 mongoose.connect("mongodb://localhost:27017/fs-express-mongoose", options, () => {

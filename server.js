@@ -21,6 +21,8 @@ let app = express();
 //Static file handling
 app.use(express.static(__dirname + "/assets/dist", { maxage: '7d' }));
 
+app.use("/api/user", require("./controllers/user"));
+
 app.use(require("./controllers/views"));
 
 //body-parser, used to parse request data

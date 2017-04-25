@@ -1,19 +1,26 @@
 (function (APP) {
 
-	if (window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
-	    httpRequest = new XMLHttpRequest();
-	} else if (window.ActiveXObject) { // IE 6 and older
-	    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
-	}
+	var createHttpRequest = function  () {
+		var httpRequest;
+		if (window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
+		    httpRequest = new XMLHttpRequest();
+		} else if (window.ActiveXObject) { // IE 6 and older
+		    httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+		}
 
-	APP.viewTemplate = function (file_name) {
-		var file_name = file_name  || "user";
-		httpRequest.open("GET", "http://localhost:5555/templates/" + file_name + ".html", true);
-		httpRequest.send();
+		return httpRequest;
 	};
-	// window.onload = function () {
-		// Old compatibility code, no longer needed.
-		
+
+
+	//View Handling
+	(function () {
+		var httpRequest = createHttpRequest();
+
+		APP.viewTemplate = function (file_name) {
+			var file_name = file_name  || "user";
+			httpRequest.open("GET", "http://localhost:5555/templates/" + file_name + ".html", true);
+			httpRequest.send();
+		};
 
 		httpRequest.onreadystatechange = function (res){
 		   
@@ -38,10 +45,40 @@
 				}
 			}
 		};
+	})();
+
+
+	//API calls
+	(function () {
+
+		APP.createUser = function (form) {
+			var httpRequest = createHttpRequest();
+			
+			httpRequest.open("POST", "http://localhost:5555/api/user");
+			
+			createHttpRequest.onreadystatechange = function () {
+				if (httpRequest.readyState === XMLHttpRequest.DONE) {
+					
+					if (httpRequest.status === 200) {
+						
+
+						tmp_div.innerHTML = "<p>You created a user!</p>";
+						frag.appendChild(tmp_div);
+						main_content.appendChild(frag);
+					} 
+					else {
+						console.log('There was a problem with the request.');
+					}
+				}
+			}
+			httpRequest.send(new FormData(form));
+			return false;
+		};
+		
+	})();
+	
 
 		
-		
-	// };
 	
 
 })(window.APP || (window.APP = {}));
