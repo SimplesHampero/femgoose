@@ -10,8 +10,8 @@ const compression = require("compression");
 let initialised = StartUpManager.validateInit(); 
 
 if(initialised.result === false) {
-	console.log(init_ok.message);
-	return 0;
+	console.log(initialised.message);
+	return false;
 }	
 
 //Define the express app object
@@ -45,7 +45,6 @@ else {
 			console.log(`worker ${worker.process.pid} online`);
 		})
 		.on('exit', (deadWorker, code, signal) => {
-
 			//If a worker dies restart it
 			var worker = cluster.fork();
 
