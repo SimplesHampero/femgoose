@@ -5,6 +5,7 @@ const StartUpManager = require("./classes/start-up-manager");
 const numCPUs = require("os").cpus().length;
 const cluster = require("cluster");
 const compression = require("compression");
+const db = require("./db");
 
 //Perform intial initialization validation
 let initialised = StartUpManager.validateInit(); 
