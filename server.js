@@ -17,6 +17,9 @@ if(initialised.result === false) {
 //Define the express app object
 let app = express();
 
+//Static file handling
+app.use(express.static(__dirname + "./assets/dist", { maxage: '7d' }));
+
 //body-parser, used to parse request data
 app.use(bodyParser.json());
 
