@@ -1,0 +1,27 @@
+{
+  "name": "fs-express-mongoose",
+  "version": "1.0.0",
+  "description": "File system structure for an Express (NodeJS) + Mongoose (MongoDB) API.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fendorio/fs-express-mongoose.git"
+  },
+  "keywords": [
+    "Node",
+    "Express",
+    "Mongoose",
+    "Mongodb",
+    "API"
+  ],
+  "author": "Lee Cameron Brindley",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fendorio/fs-express-mongoose/issues"
+  },
+  "homepage": "https://github.com/fendorio/fs-express-mongoose#readme"
+}
