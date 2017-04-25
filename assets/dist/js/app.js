@@ -9,9 +9,9 @@
 		}
 
 		httpRequest.onreadystatechange = function (res){
-		    // Process the server response here.
-		    console.log(httpRequest);
-		    //We'll inject the ajax response into this document fragment, then append it to the dom
+		   
+		    //We'll inject the ajax response into this document fragment, 
+		    //then append it to the dom
 		    var frag = document.createDocumentFragment();
 		    var tmp_div = document.createElement("div");
 
