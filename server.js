@@ -18,7 +18,7 @@ if(initialised.result === false) {
 let app = express();
 
 //Static file handling
-app.use(express.static(__dirname + "./assets/dist", { maxage: '7d' }));
+app.use(express.static(__dirname + "/assets/dist", { maxage: '7d' }));
 
 app.use(require("./controllers/views"));
 
