@@ -18,6 +18,8 @@ if(initialised.result === false) {
 //Define the express app object
 let app = express();
 
+app.use(bodyParser.json());
+
 //Static file handling
 app.use(express.static(__dirname + "/assets/dist", { maxage: '7d' }));
 
@@ -26,7 +28,6 @@ app.use("/api/user", require("./controllers/user"));
 app.use(require("./controllers/views"));
 
 //body-parser, used to parse request data
-app.use(bodyParser.json());
 
 //Compress request responses
 app.use(compression());
