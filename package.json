@@ -23,5 +23,12 @@
   "bugs": {
     "url": "https://github.com/fendorio/fs-express-mongoose/issues"
   },
-  "homepage": "https://github.com/fendorio/fs-express-mongoose#readme"
+  "homepage": "https://github.com/fendorio/fs-express-mongoose#readme",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cluster": "^0.7.7",
+    "compression": "^1.6.2",
+    "express": "^4.15.2",
+    "mongoose": "^4.9.6"
+  }
 }
