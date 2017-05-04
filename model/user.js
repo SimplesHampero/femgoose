@@ -2,7 +2,7 @@ const db = require("../db");
 const APP_CONFIG = require("../config/app");
 const bcrypt = require("bcryptjs");
 
-let User = new db.Schema("user", {
+let User = new db.Schema({
 	
 	username: { type: String, required: true, select: false, unique: true },
 	password: { type: String, required: true, select: false },
