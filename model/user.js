@@ -17,7 +17,7 @@ let User = db.model("user", {
 
 	returns cb (error, result) => result = {true, false}
 */
-User.validatePassword = (password, cb) => {
+User.methods.validatePassword = (password, cb) => {
 	bcrypt.compare(password, this.password, (err, result) => {
 		
 		if (err) {
@@ -33,7 +33,7 @@ User.validatePassword = (password, cb) => {
 
 	returns Boolean
 */
-User.validatePasswordSync = (password, cb) => {
+User.methods.validatePasswordSync = (password, cb) => {
 	return bcrypt.compareSync(password, this.password);
 };
 
