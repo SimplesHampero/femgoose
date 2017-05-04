@@ -20,17 +20,30 @@ router.get("/", (req, res) => {
 });
 
 router.post("/", (req, res) => {
-	
+
 	var user = new User(req.body);
 
-	user.save((err, user) => {
-
+	User.generateHash(user.password, (err, hash) => {
 		if (err) {
-			console.log("User POST - Error saving user");
-			console.log(err);
-			return res.status(500).json({message: "Error saving user."});
+			return res.status(500).json({message:"Error generating password."});
 		}
-		return res.json({message: "Success", data: user});
+
+		//Update the password with the hash
+		user.password = hash;
+
+		user.save((err, user) => {
+
+			if (err) {
+				console.log("User POST - Error saving user");
+				console.log(err);
+				return res.status(500).json({message: "Error saving user."});
+			}
+
+			//Clear the password from the response
+			user.password = null;
+			
+			return res.json({message: "Success", data: user});
+		});
 	});
 });
 

@@ -11,13 +11,14 @@ const User = require("../model/user");
  */
 router.post("/authenticate", (req, res, next) => {
 
-    let username = req.query.username || "";
-    let password = req.query.password || "";
+    let username = req.body.username || "";
+    let password = req.body.password || "";
 
     User
         .findOne({
             username: username
         })
+        .select("username password")
         .exec((err, user) => {
             
             if (err) {
@@ -26,13 +27,13 @@ router.post("/authenticate", (req, res, next) => {
             if (!user) {
                 return res.status(404).json({ message: "No user found." });
             }
-
+            
             //Validate the user's password
             user.validatePassword(password, (err, result) => {
                 
                 //We'll pass this back to the client if successful 
                 let api_token = "";
-                
+                console.log(err);
                 if (err) {
                     return res.status(500).json({message: "Error validating password."});
                 }

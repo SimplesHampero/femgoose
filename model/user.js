@@ -17,7 +17,8 @@ let User = new db.Schema({
 
 	returns cb (error, result) => result = {true, false}
 */
-User.methods.validatePassword = (password, cb) => {
+User.methods.validatePassword = function (password, cb) {
+
 	bcrypt.compare(password, this.password, (err, result) => {
 		
 		if (err) {
@@ -33,7 +34,7 @@ User.methods.validatePassword = (password, cb) => {
 
 	returns Boolean
 */
-User.methods.validatePasswordSync = (password, cb) => {
+User.methods.validatePasswordSync = function (password, cb) {
 	return bcrypt.compareSync(password, this.password);
 };
 
@@ -42,7 +43,7 @@ User.methods.validatePasswordSync = (password, cb) => {
 
 	returns a hashed value
 */
-User.statics.generateHash = (password, cb) =>  {
+User.statics.generateHash = function (password, cb)  {
 	return bcrypt.hash(password, APP_CONFIG.auth.password_salt_iterations, cb);
 };
 
@@ -51,7 +52,7 @@ User.statics.generateHash = (password, cb) =>  {
 
 	returns a hashed value
 */
-User.statics.generateHashSync = (password) =>  {
+User.statics.generateHashSync = function (password)  {
 
 	return bcrypt.hashSync(password, APP_CONFIG.auth.password_salt_iterations);
 };
