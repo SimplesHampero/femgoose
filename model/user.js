@@ -12,7 +12,6 @@ let User = db.model("user", {
 	last_name: { type: String, required: false, select: false, default: "" },
 });
 
-
 /*
 	Validate a user's password
 
