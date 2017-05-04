@@ -1,4 +1,5 @@
 const db = require("../db");
+const APP_CONFIG = require("../config/app");
 const bcrypt = require("bcryptjs");
 
 let User = db.model("user", {
@@ -37,7 +38,23 @@ User.methods.validatePasswordSync = (password, cb) => {
 	return bcrypt.compareSync(password, this.password);
 };
 
-User.statics.generateHash = (password, cb) =>  {};
-User.statics.generateHashSync = () =>  {};
+/*
+	Generate a new hash 
+
+	returns a hashed value
+*/
+User.statics.generateHash = (password, cb) =>  {
+	return bcrypt.hash(password, APP_CONFIG.auth.password_salt_iterations, cb);
+};
+
+/*
+	Generate a new hash 
+
+	returns a hashed value
+*/
+User.statics.generateHashSync = (password) =>  {
+
+	return bcrypt.hashSync(password, APP_CONFIG.auth.password_salt_iterations);
+};
 
 module.exports = User;

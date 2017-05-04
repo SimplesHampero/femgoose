@@ -6,7 +6,9 @@ module.exports = {
 	"auth": {
 
 		//Input your own JWT secret in here
-		"jwt_secret": "X)72w(]LCXHn!j8{bR2;K<eDYth4"
+		"jwt_secret": "X)72w(]LCXHn!j8{bR2;K<eDYth4",
+
+		"password_salt_iterations": 10
 	}
 
 	//Accepted environments variables to be passed to the app via NODE_ENV on startup
