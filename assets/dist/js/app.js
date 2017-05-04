@@ -18,7 +18,7 @@
 
 		APP.viewTemplate = function (file_name) {
 			var file_name = file_name  || "user";
-			httpRequest.open("GET", "http://localhost:5555/templates/" + file_name + ".html", true);
+			httpRequest.open("GET", "http://localhost:5556/templates/" + file_name + ".html", true);
 			httpRequest.send();
 		};
 
@@ -61,7 +61,7 @@
 				password: document.getElementById("password").value,
 			};
 
-			httpRequest.open("POST", "http://localhost:5555/api/user", true);
+			httpRequest.open("POST", "http://localhost:5556/api/user", true);
 
 			httpRequest.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
 
@@ -93,7 +93,7 @@
 			var users = [];
 
 
-			httpRequest.open("GET", "http://localhost:5555/api/user", true);
+			httpRequest.open("GET", "http://localhost:5556/api/user", true);
 
 			httpRequest.onreadystatechange = function () {
 				

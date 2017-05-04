@@ -1,4 +1,4 @@
-const APP_CONFIG = require("../config/app");
+const API_CONFIG = require("../config/app");
 const JSHelp = require("../classes/js-help");
 const numCPUs = require("os").cpus().length;
 const cluster = require("cluster");
@@ -19,14 +19,14 @@ class App {
 		if (JSHelp.typeof(return_data.current_environment) === "undefined") {
 			
 			return_data.result = false;
-			return_data.message = "Please provide environment variable NODE_ENV. Available environments = [ "+ APP_CONFIG.environments_available.join(", ") + " ]";
+			return_data.message = "Please provide environment variable NODE_ENV. Available environments = [ "+ API_CONFIG.environments_available.join(", ") + " ]";
 			return return_data;
 		}
 
 		//Check for invalid values
-		if (APP_CONFIG.environments_available.indexOf(return_data.current_environment) === -1) {
+		if (API_CONFIG.environments_available.indexOf(return_data.current_environment) === -1) {
 			return_data.result = false;
-			return_data.message = "Invalid environment variable passed to NODE_ENV. Available environments = [ "+ APP_CONFIG.environments_available.join(", ") + " ]";
+			return_data.message = "Invalid environment variable passed to NODE_ENV. Available environments = [ "+ API_CONFIG.environments_available.join(", ") + " ]";
 			return return_data;
 		}
 
@@ -40,8 +40,8 @@ class App {
 		if (env === "dev") {
 
 			//Development
-			app.listen(APP_CONFIG.port, () => {
-				console.log("App listening on port " + APP_CONFIG.port);
+			app.listen(API_CONFIG.port, () => {
+				console.log("App listening on port " + API_CONFIG.port);
 			});
 		}
 		else {
@@ -72,7 +72,7 @@ class App {
 			else {
 
 				// Start the server
-				app.listen(APP_CONFIG.port, () => {
+				app.listen(API_CONFIG.port, () => {
 					console.log("App listening on port " + APP_CONFIG.port);
 				});
 			}
