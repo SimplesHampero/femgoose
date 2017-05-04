@@ -6,7 +6,7 @@ const compression = require("compression");
 const db = require("./db");
 
 //Perform intial initialization validation
-let initialised = App.validateEnv(); 
+const initialised = App.validateEnv(); 
 
 if(initialised.result === false) {
 	console.log(initialised.message);
