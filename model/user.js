@@ -2,7 +2,7 @@ const db = require("../db");
 const APP_CONFIG = require("../config/app");
 const bcrypt = require("bcryptjs");
 
-let User = db.model("user", {
+let User = new db.Schema("user", {
 	
 	username: { type: String, required: true, select: false, unique: true },
 	password: { type: String, required: true, select: false },
@@ -56,4 +56,6 @@ User.statics.generateHashSync = (password) =>  {
 	return bcrypt.hashSync(password, APP_CONFIG.auth.password_salt_iterations);
 };
 
-module.exports = User;
+let UserModel = db.model("User", User);
+
+module.exports = UserModel;
