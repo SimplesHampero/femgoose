@@ -37,4 +37,7 @@ User.methods.validatePasswordSync = (password, cb) => {
 	return bcrypt.compareSync(password, this.password);
 };
 
+User.statics.generateHash = (password, cb) =>  {};
+User.statics.generateHashSync = () =>  {};
+
 module.exports = User;
