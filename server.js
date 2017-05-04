@@ -23,6 +23,8 @@ app.use(express.static(__dirname + "/assets/dist", { maxage: '7d' }));
 
 app.use("/api/auth", require("./controllers/auth"));
 
+app.use(require("./middleware/auth-jwt"));
+
 app.use("/api/user", require("./controllers/user"));
 
 app.use(require("./controllers/views"));
