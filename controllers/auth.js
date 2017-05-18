@@ -11,8 +11,8 @@ const User = require("../model/user");
  */
 router.post("/authenticate", (req, res, next) => {
 
-    let username = req.body.username || "";
-    let password = req.body.password || "";
+    const username = req.body.username || "";
+    const password = req.body.password || "";
 
     User
         .findOne({
@@ -33,7 +33,7 @@ router.post("/authenticate", (req, res, next) => {
                 
                 //We'll pass this back to the client if successful 
                 let api_token = "";
-                console.log(err);
+
                 if (err) {
                     return res.status(500).json({message: "Error validating password."});
                 }
