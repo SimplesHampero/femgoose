@@ -7,7 +7,8 @@ let User = new db.Schema({
 	username: { type: String, required: true, select: false },
 	password: { type: String, required: true, select: false },
 	
-	email: { type: String, required: false, select: false, default: "" },
+	email: { type: String, required: false, select: false, default: "", unique: true },
+
 	first_name: { type: String, required: false, select: false, default: "" },
 	last_name: { type: String, required: false, select: false, default: "" },
 });
