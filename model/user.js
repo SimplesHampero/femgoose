@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 
 let User = new db.Schema({
 	
-	username: { type: String, required: true, select: false, unique: true },
+	username: { type: String, required: true, select: false },
 	password: { type: String, required: true, select: false },
 	
 	email: { type: String, required: false, select: false, default: "" },
