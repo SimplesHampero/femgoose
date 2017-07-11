@@ -4,13 +4,35 @@ const bcrypt = require("bcryptjs");
 
 let User = new db.Schema({
 	
-	username: { type: String, required: true, select: false },
-	password: { type: String, required: true, select: false },
-	
-	email: { type: String, required: false, select: false, default: "", unique: true },
-
-	first_name: { type: String, required: false, select: false, default: "" },
-	last_name: { type: String, required: false, select: false, default: "" },
+	email: { 
+		type: String, 
+		required: false, 
+		select: false, 
+		unique: true 
+		default: "", 
+	},
+	password: { 
+		type: String, 
+		required: true, 
+		select: false 
+	},
+	first_name: { 
+		type: String, 
+		required: false, 
+		select: false, 
+		default: "" 
+	},
+	last_name: { 
+		type: String, 
+		required: false, 
+		select: false, 
+		default: "" 
+	},
+	username: { 
+		type: String, 
+		required: true, 
+		select: false 
+	}
 });
 
 /*
@@ -57,6 +79,44 @@ User.statics.generateHashSync = function (password)  {
 
 	return bcrypt.hashSync(password, APP_CONFIG.auth.password_salt_iterations);
 };
+
+/*
+* Query helpers
+*/
+
+/*
+* @function findByUsername Adds a regular expression query for the username field
+* @param {String} name String to match against the username
+*/
+User.statics.findByUsername = function(name, cb) {
+	return this.find({ username: new RegExp(name, "i") }, cb);
+};
+
+/*
+* End Query helpers
+*/
+
+/*
+* Pre / Post Hooks
+*/
+
+/*
+* @desc Set username to (first_name + last_name).toLower() for efficient text searching.
+*/
+User.pre("save", function (next) {
+
+	//Check a first_name & last_name have been provided before updating the username
+	if (this.first_name !== undefined && this.last_name !== undefined) {
+		this.username = (this.first_name + " " + this.last_name).toLowerCase();	
+	}
+	
+	next();
+});
+
+/*
+* End Pre / Post Hooks
+*/
+
 
 let UserModel = db.model("User", User);
 
