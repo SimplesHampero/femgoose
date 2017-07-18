@@ -17,22 +17,19 @@ if(initialised.result === false) {
 let app = express();
 
 app.use(bodyParser.json());
+app.use(compression());
 
 //Static file handling
-app.use(express.static(__dirname + "/assets/dist", { maxage: '7d' }));
+app.use(express.static(__dirname + "/assets/dist", { maxage: "1d" }));
 
-app.use("/api/auth", require("./controllers/auth"));
+app.use("/api/public", require("./controllers/public/index"));
 
-app.use(require("./middleware/auth-jwt"));
+//This protects anything inside the /api url namespace
+// app.use("/api", require("./middleware/auth-jwt"));
 
-app.use("/api/user", require("./controllers/user"));
+app.use("/api/user", require("./controllers/user/index"));
 
 app.use(require("./controllers/views"));
-
-//body-parser, used to parse request data
-
-//Compress request responses
-app.use(compression());
 
 //Start the application
 App.run(app);

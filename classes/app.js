@@ -25,6 +25,7 @@ class App {
 
 		//Check for invalid values
 		if (API_CONFIG.environments_available.indexOf(return_data.current_environment) === -1) {
+			
 			return_data.result = false;
 			return_data.message = "Invalid environment variable passed to NODE_ENV. Available environments = [ "+ API_CONFIG.environments_available.join(", ") + " ]";
 			return return_data;
@@ -37,7 +38,7 @@ class App {
 
 		let env = process.env.NODE_ENV;
 
-		if (env === "dev") {
+		if (env === "development") {
 
 			//Development
 			app.listen(API_CONFIG.port, () => {
@@ -73,7 +74,7 @@ class App {
 
 				// Start the server
 				app.listen(API_CONFIG.port, () => {
-					console.log("App listening on port " + APP_CONFIG.port);
+					console.log("App listening on port " + API_CONFIG.port);
 				});
 			}
 		}

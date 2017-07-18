@@ -12,7 +12,7 @@ module.exports = {
 	},
 
 	//Accepted environments variables to be passed to the app via NODE_ENV on startup
-	//e.g. NODE_ENV=dev node server.js || NODE_ENV=prod forever start server.js, etc.
+	//e.g. NODE_ENV=development node server.js || NODE_ENV=production forever start server.js
 	"environments_available": [
 		"development",
 		"production"

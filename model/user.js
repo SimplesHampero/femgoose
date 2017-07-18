@@ -8,7 +8,7 @@ let User = new db.Schema({
 		type: String, 
 		required: false, 
 		select: false, 
-		unique: true 
+		unique: true,
 		default: "", 
 	},
 	password: { 
@@ -30,7 +30,7 @@ let User = new db.Schema({
 	},
 	username: { 
 		type: String, 
-		required: true, 
+		required: false, 
 		select: false 
 	}
 });
@@ -89,7 +89,14 @@ User.statics.generateHashSync = function (password)  {
 * @param {String} name String to match against the username
 */
 User.statics.findByUsername = function(name, cb) {
-	return this.find({ username: new RegExp(name, "i") }, cb);
+
+	let expression = "";
+
+	if (name.length > 0) {
+		expression = new RegExp(data.props.query.toLowerCase());
+	}
+	
+	return this.find({ username: expression }, cb);
 };
 
 /*
@@ -105,13 +112,11 @@ User.statics.findByUsername = function(name, cb) {
 */
 User.pre("save", function (next) {
 
-	//Check a first_name & last_name have been provided before updating the username
-	if (this.first_name !== undefined && this.last_name !== undefined) {
-		this.username = (this.first_name + " " + this.last_name).toLowerCase();	
-	}
+	//Perform any logic on the model before saving...
 	
 	next();
 });
+
 
 /*
 * End Pre / Post Hooks
