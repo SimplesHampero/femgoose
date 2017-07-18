@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const ProcessorData = require("../../classes/processor-data");
 const UserCreateProcessor = require("../../processors/public/create-account");
-const AuthenticateProcessor = require("../../processors/public/jwt-auth");
+const AuthenticateProcessor = require("../../processors/public/login");
 
 
 router.post("/createaccount", (req, res) => {
