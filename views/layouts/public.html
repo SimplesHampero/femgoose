@@ -23,6 +23,7 @@
         <!--[if gt IE 8]><!-->
             <link rel="stylesheet" href="css/layouts/marketing.css">
         <!--<![endif]-->
+    
 </head>
 <body>
 
@@ -125,7 +126,7 @@
 
         <div class="pure-g">
             <div class="l-box-lrg pure-u-1 pure-u-md-2-5">
-                <form class="pure-form pure-form-stacked">
+                <form id="register" class="pure-form pure-form-stacked" >
                     <fieldset>
 
                         <label for="name">Your Name</label>
@@ -168,8 +169,20 @@
 
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script>
+<script src="public/js/app.js"></script>
 
+<script>
+    $(function () {
+        "use strict";
 
+        var App = window.App,
+            Auth = App.auth;
+        
+        
+    });
+</script>
 
 </body>
 </html>

@@ -16,12 +16,16 @@ if(initialised.result === false) {
 //Define the express app object
 let app = express();
 
+//For parsing request JSON
 app.use(bodyParser.json());
+
+//Enables gzip compression
 app.use(compression());
 
 //Static file handling
 app.use(express.static(__dirname + "/assets/dist", { maxage: "1d" }));
 
+//Publicaly accessible API routes
 app.use("/api/public", require("./controllers/public/index"));
 
 //This protects anything inside the /api url namespace

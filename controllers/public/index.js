@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const ProcessorData = require("../../classes/processor-data");
 const UserCreateProcessor = require("../../processors/public/create-account");
-const AuthenticateProcessor = require("../../processors/public/login");
+const LoginProcessor = require("../../processors/public/login");
 
 
 router.post("/createaccount", (req, res) => {
@@ -16,9 +16,9 @@ router.post("/createaccount", (req, res) => {
 	});
 });
 
-router.get("/authenticate", (req, res) => {
+router.post("/login", (req, res) => {
 	
-	AuthenticateProcessor(new ProcessorData(req), (result) => {
+	LoginProcessor(new ProcessorData(req), (result) => {
 
 		if (result.err) {
 			return res.status(result.status).json(result.data);
