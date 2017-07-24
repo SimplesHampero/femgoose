@@ -32,13 +32,28 @@ const validateUser = (user, password, cb) => {
             return cb(err, {message: "Invalid password."});
         }
 
+        return cb(null, true);
+    });
+};
+
+let authenticate = (client, user, cb) => {
+
+    const origin = (client === "app") ? "app" : "web";
+    let api_token = null;
+
+    //Generate the API token if this is for the App.
+    if (origin === "app") {
         //Encode the client's API token
         api_token = jwt.encode({
             _id: user._id
         }, APP_CONFIG.auth.jwt_secret);
 
-        cb(null, api_token);
-    });
+        return cb(null, api_token);
+    }
+    else {
+
+        return cb(null, user._id);
+    }
 };
 
 /**
@@ -55,7 +70,7 @@ let processor = (data, cb) => {
             return cb(new ProcessorResponse(err, {message: "Error finding user."}, 500));
         }
         if (!user) {
-            return cb(new ProcessorResponse(err, {message: "No user found."}, 404));
+            return cb(new ProcessorResponse(true, {message: "No user found."}, 404));
         }
         
         validateUser(user, password, (err, token) => {
@@ -68,7 +83,14 @@ let processor = (data, cb) => {
                 return cb(new ProcessorResponse(err, {message: "Error generating auth token."}, 401));
             }
 
-            return cb(new ProcessorResponse(null, token));
+            authenticate(data.client, user, (err, result) => {
+
+                if (err) {
+                    return cb(new ProcessorResponse(true, { message: "Error authenticating user."}));
+                }
+                return cb(new ProcessorResponse(null, result));            
+            });
+
         });
     });
 

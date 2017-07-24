@@ -7,6 +7,7 @@
 
     //API endpoint.
     var API_BASE_URL = "http://localhost:5556/";
+    var API_KEY_ID = "fs-express-mongoose-api-key";
 
     /**
      * @function namespace Non-destructive namespacing function
@@ -37,6 +38,20 @@
     App.namespace("auth");
 
     /**
+     * @function isAuthenticated Checks for an API key being present on the device
+     */
+    App.auth.isAuthenticated = function () {
+        return JSON.parse(window.localStorage.getItem(API_KEY_ID));
+    };
+
+    /**
+     * @function authenticate Sets the user's API key in persistent storage
+     */
+    App.auth.authenticate = function (value) {
+        return window.localStorage.setItem(API_KEY_ID, JSON.stringify(value));
+    };
+
+    /**
      * @function _checkApiResponse Checks the response object from the API for error/success
      */
     App.auth._checkApiResponse = function (res) {
@@ -62,7 +77,11 @@
 
         fetch(API_BASE_URL + "api/public/login", {
             method: "POST",
-            headers: {"content-type": "application/json"},            
+            headers: {
+                "content-type": "application/json",
+                "x-client": "web"
+            },            
+            credentials: "include",
             body: JSON.stringify({email: email, password: password})
         })
         .then(function (res) {
@@ -84,7 +103,11 @@
 
         fetch(API_BASE_URL + "api/public/createaccount", {
             method: "POST",
-            headers: {"content-type": "application/json"},
+            headers: {
+                "content-type": "application/json",
+                "x-client": "web"
+            },
+            credentials: "include",
             body: JSON.stringify(fields)
         })
         .then(function (res) {

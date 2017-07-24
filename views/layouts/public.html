@@ -233,11 +233,11 @@
             });
 
             Auth.login(fields.email, fields.password, function (res) {
-                console.log("Login success");
-                console.log(res);
+                
+                alert("Login success");
+                window.location.href = "/app";
             }, function (err) {
-                console.log("Error logging in.");
-                console.log(res);
+                alert("Error logging in: " + err.message);
             });
         });
     });
