@@ -36,24 +36,62 @@
 
     App.namespace("auth");
 
-    
+    /**
+     * @function _checkApiResponse Checks the response object from the API for error/success
+     */
+    App.auth._checkApiResponse = function (res) {
+
+        var result = {
+            success: false,
+            status: res.status
+        };
+        
+        if (result.status >= 200 && result.status < 300) {
+            result.success = true;
+        }
+        
+        return result;
+    };
+
     /**
      * @function login Attempts to retrieve an authentication token from the API
      * @param {String} email Email address for a user account
      * @param {String} password Password for a user account
      */
-    App.auth.login = function (email, password) {
-        console.log("Login.");
+    App.auth.login = function (email, password, success, error) {
 
         fetch(API_BASE_URL + "api/public/login", {
             method: "POST",
-            body: JSON.stringify({email: "leebrindley@gmail.com", password: "password"})
+            headers: {"content-type": "application/json"},            
+            body: JSON.stringify({email: email, password: password})
         })
         .then(function (res) {
-            console.log("Fetch callback")
+
+            var successful = App.auth._checkApiResponse(res).success; 
+
             res.json().then(function (data) {
-                console.log("data");
-                console.log(data);
+                return (successful) ? success(data) : error(data);
+            });
+        });
+    };
+
+
+    /**
+     * @function register Registers a user account with the API
+     * 
+     */
+    App.auth.register = function (fields, success, error) {
+
+        fetch(API_BASE_URL + "api/public/createaccount", {
+            method: "POST",
+            headers: {"content-type": "application/json"},
+            body: JSON.stringify(fields)
+        })
+        .then(function (res) {
+            var successful = App.auth._checkApiResponse(res).success; 
+
+            res.json().then(function (data) {
+                return (successful) ? success(data) : error(data);
             });
         });
     };

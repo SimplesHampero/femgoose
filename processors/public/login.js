@@ -58,7 +58,7 @@ let processor = (data, cb) => {
             return cb(new ProcessorResponse(err, {message: "No user found."}, 404));
         }
         
-        validateUser(user, (err, token) => {
+        validateUser(user, password, (err, token) => {
 
             if (err) {
                 return cb(new ProcessorResponse(err, {message: "Error authenticating."}, 401));

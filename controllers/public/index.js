@@ -6,6 +6,8 @@ const LoginProcessor = require("../../processors/public/login");
 
 router.post("/createaccount", (req, res) => {
 	
+	console.log(req.body);
+	console.log("req.body");
 	UserCreateProcessor(new ProcessorData(req), (result) => {
 
 		if (result.err) {

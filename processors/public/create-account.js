@@ -7,6 +7,7 @@ const createUser = (data, cb) => {
 
     User.generateHash(user.password, (err, hash) => {
         
+        console.log(data);
         if (err) {
             return cb(true, {message:"Error generating password."})
         }
