@@ -36,24 +36,13 @@ const validateUser = (user, password, cb) => {
     });
 };
 
-let authenticate = (client, user, cb) => {
+let authenticate = (user, cb) => {
 
-    const origin = (client === "app") ? "app" : "web";
-    let api_token = null;
+    let api_token = jwt.encode({
+        _id: user._id
+    }, APP_CONFIG.auth.jwt_secret);
 
-    //Generate the API token if this is for the App.
-    if (origin === "app") {
-        //Encode the client's API token
-        api_token = jwt.encode({
-            _id: user._id
-        }, APP_CONFIG.auth.jwt_secret);
-
-        return cb(null, api_token);
-    }
-    else {
-
-        return cb(null, user._id);
-    }
+    return cb(null, api_token);
 };
 
 /**
@@ -83,12 +72,17 @@ let processor = (data, cb) => {
                 return cb(new ProcessorResponse(err, {message: "Error generating auth token."}, 401));
             }
 
-            authenticate(data.client, user, (err, result) => {
+            authenticate(user, (err, result) => {
 
                 if (err) {
-                    return cb(new ProcessorResponse(true, { message: "Error authenticating user."}));
+                    return cb(new ProcessorResponse(err, { message: "Error authenticating user."}));
                 }
-                return cb(new ProcessorResponse(null, result));            
+                return cb(new ProcessorResponse(null, {
+                    jwt: result,
+                    user: {
+                        _id: user._id
+                    }
+                }));            
             });
 
         });

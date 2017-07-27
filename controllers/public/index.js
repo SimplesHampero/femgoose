@@ -23,27 +23,30 @@ router.post("/login", (req, res) => {
 	LoginProcessor(new ProcessorData(req), (result) => {
 
 		if (result.err) {
-			console.log("Returning error");
-			console.log(result);
+
 			return res.status(result.status).json(result.data);
 		}
 
-		if (req.headers["x-client"] === "web") {
-
-			
-			req.session.user = {
-				_id: result.data
-			};
-
-			res.setHeader("Access-Control-Allow-Credentials", "true");
-			req.session.save(function () {
-				res.json(true);			
-			});
-			
-		}
-		else {
+		//Return early if no session is required, i.e. a mobile app user is logging in
+		if (req.headers["x-client"] === "app") {
 			return res.json(result.data); 		
 		}
+
+		//Indicates that the response to the request can be exposed to the page
+		res.setHeader("Access-Control-Allow-Credentials", "true");
+						
+		//Set the user model on the session
+		req.session.user = result.data.user;
+
+		//Set the access token on the session so we can inject it into the web context
+		req.session.access_token = result.data.jwt;
+
+		//Save the session explitely so we know it will be up-to-date when the front-end redirects to /app
+		req.session.save(function () {
+
+			
+			return res.json(result.data);			
+		});
 	});
 });
 

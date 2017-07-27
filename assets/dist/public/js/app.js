@@ -8,6 +8,7 @@
     //API endpoint.
     var API_BASE_URL = "http://localhost:5556/";
     var API_KEY_ID = "fs-express-mongoose-api-key";
+    var APP_BASE_URL = "/app";
 
     /**
      * @function namespace Non-destructive namespacing function
@@ -69,6 +70,18 @@
     };
 
     /**
+     * @function _onLoginSuccess Logic executed when the user has logged in successfuly
+     */
+    App.auth.onLoginSuccess = function  (token) {
+        
+        //Store the api token in localstorage
+        App.auth.authenticate(token);
+
+        //Redirect to the app context
+        window.location.href = APP_BASE_URL;
+    };
+    
+    /**
      * @function login Attempts to retrieve an authentication token from the API
      * @param {String} email Email address for a user account
      * @param {String} password Password for a user account
@@ -94,7 +107,6 @@
         });
     };
 
-
     /**
      * @function register Registers a user account with the API
      * 
@@ -112,11 +124,26 @@
         })
         .then(function (res) {
             var successful = App.auth._checkApiResponse(res).success; 
-
+                
             res.json().then(function (data) {
-                return (successful) ? success(data) : error(data);
+
+                
+                if (successful) {
+
+                    return App.auth.login(fields.email, fields.password, function (token) {
+                        console.log("token", token);            
+                        App.auth.onLoginSuccess(token);
+
+                    }, function (err) {
+                        console.log("Error logging in.");
+                        console.log(err);
+                    });
+                }
+
+                return error(data);
             });
         });
     };
 
+    
 })(window.App || (window.App = {}));

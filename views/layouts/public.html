@@ -17,12 +17,12 @@
     
     <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
     
-        <!--[if lte IE 8]>
-            <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
-        <![endif]-->
-        <!--[if gt IE 8]><!-->
-            <link rel="stylesheet" href="css/layouts/marketing.css">
-        <!--<![endif]-->
+    <!--[if lte IE 8]>
+        <link rel="stylesheet" href="css/layouts/marketing-old-ie.css">
+    <![endif]-->
+    <!--[if gt IE 8]><!-->
+        <link rel="stylesheet" href="css/layouts/marketing.css">
+    <!--<![endif]-->
     
 </head>
 <body>
@@ -215,7 +215,6 @@
                 console.log(res);
             }, function (err) {
                 console.log("Error registering.");
-                console.log(res);
             });
         });
 
@@ -234,8 +233,7 @@
 
             Auth.login(fields.email, fields.password, function (res) {
                 
-                alert("Login success");
-                window.location.href = "/app";
+                Auth.onLoginSuccess();
             }, function (err) {
                 alert("Error logging in: " + err.message);
             });

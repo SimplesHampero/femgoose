@@ -6,26 +6,29 @@ let User = new db.Schema({
 	
 	email: { 
 		type: String, 
-		required: false, 
+		required: true, 
 		select: false, 
 		unique: true,
-		default: "", 
+		minlength: "3"
 	},
 	password: { 
 		type: String, 
-		required: true, 
+		required: true,
+		minlength: 8, 
 		select: false 
 	},
 	first_name: { 
 		type: String, 
 		required: false, 
 		select: false, 
+		minlength: 1,
 		default: "" 
 	},
 	last_name: { 
 		type: String, 
 		required: false, 
 		select: false, 
+		minlength: 1,
 		default: "" 
 	},
 	username: { 

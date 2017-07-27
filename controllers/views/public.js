@@ -11,7 +11,7 @@ router.use(express.static(view_dir, {
 router.get("*", (req, res, next) => {
     
     if (req.user || (req.session && req.session.user)) {
-        res.redirect("/app");
+        return res.redirect("/app");
     }
 
 	//Response options
