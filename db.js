@@ -23,7 +23,7 @@ let options = {
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect("mongodb://localhost:27017/fs-express-mongoose", options, () => {
+mongoose.connect(CONNECTION_STRING, options, () => {
 	console.log("MongoDB connected.");
 });
 
