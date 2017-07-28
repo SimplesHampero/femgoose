@@ -1,10 +1,10 @@
 const jwt = require("jwt-simple");
 const APP_CONFIG = require("../config/app");
+	
 
 module.exports = (req, res, next) => {
 
 	//Get the token from the request
-	let client = req.headers["x-client"] || "web";
 	let token = req.headers["x-auth"] || req.params.jwt || req.query.jwt || req.session.access_token;
 	let decoded = null;
 
@@ -33,3 +33,5 @@ module.exports = (req, res, next) => {
 	
 	next();
 };
+
+
