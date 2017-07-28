@@ -61,7 +61,7 @@ app.use("/api/public", require("./controllers/public/index"));
 app.use(/^\/(?!app).*/, require("./controllers/views/public"));
 
 //This protects anything inside the /api url namespace
-app.use(["/app", "/api"], require("./middleware/auth-jwt"));
+app.use(["/app", "/api"], require("./middleware/authenticate"));
 
 //Custom controller definitions
 app.use("/api/user", require("./controllers/user/index"));
