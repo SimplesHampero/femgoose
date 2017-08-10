@@ -8,8 +8,9 @@
     "start": "node server.js",
     "windows-dev": "SET NODE_ENV=development&& nodemon server.js",
     "windows-prod": "SET NODE_ENV=production&& nodemon server.js",
-    "unix-dev": "NODE_ENV=development nodemon server.js",
-    "unix-prod": "NODE_ENV=production nodemon server.js"
+    "unix-dev": "NODE_ENV=development gulp server.js",
+    "unix-prod": "NODE_ENV=production forever start server.js",
+    "unix-prod-restart": "NODE_ENV=production forever restart server.js"
   },
   "repository": {
     "type": "git",
