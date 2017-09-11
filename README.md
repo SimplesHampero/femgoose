@@ -10,6 +10,12 @@ To install the application, firstly you'll want to install the project's dependa
 
 `npm install`
 
+#### Development
+
+Nodemon is used to start / restart the application in development, you'll want to have this installed globally on your machine. You may need to use 'sudo' for this.
+
+`npm install -g nodemon` 
+
 ### Configuration
 
 You'll then want to setup the applications configuration. You'll find two files in the config folder
