@@ -4,13 +4,13 @@ File system structure for an Express (NodeJS) +  Mongoose (MongoDB) API.
 
 ## Installation
 
-###NPM Dependancies
+### NPM Dependancies
 
 To install the application, firstly you'll want to install the project's dependancies from npm.
 
 `npm install`
 
-###Configuration
+### Configuration
 
 You'll then want to setup the applications configuration. You'll find two files in the config folder
 
