@@ -1,5 +1,5 @@
-const API_CONFIG = require("../config/app");
-const JSHelp = require("../classes/js-help");
+const API_CONFIG = require("../../../config/app");
+const JSHelp = require("./js-help");
 const numCPUs = require("os").cpus().length;
 const cluster = require("cluster");
 

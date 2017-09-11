@@ -1,5 +1,5 @@
-const db = require("../db");
-const APP_CONFIG = require("../config/app");
+const db = require("../db/main");
+const APP_CONFIG = require("../../config/app");
 const bcrypt = require("bcryptjs");
 
 let User = new db.Schema({

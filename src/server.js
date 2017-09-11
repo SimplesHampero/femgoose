@@ -1,12 +1,13 @@
 const express = require("express");
-const APP_CONFIG = require("./config/app");
+const APP_CONFIG = require("../config/app");
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
-const App = require("./classes/app");
+const App = require("./lib/classes/app");
 const compression = require("compression");
-const db = require("./db");
+const db = require("./db/main");
 const es6Renderer = require("express-es6-template-engine");
+const path = require("path");
 
 //Perform intial initialization validation
 const initialised = App.validateEnv(); 
@@ -30,7 +31,7 @@ app.set('trust proxy', 1)
 app.engine("html", es6Renderer);
 
 //Set the root view directory
-app.set("views", "./views");
+app.set("views", "./src/views");
 
 //Assign the template engine as the default view engine of express
 app.set("view engine", "html");
@@ -51,7 +52,7 @@ app.use(session({
 app.use(compression());
 
 //Static file handling
-app.use(express.static(__dirname + "/assets/dist", { maxage: "1d" }));
+app.use(express.static(path.join(__dirname, "../assets/dist"), { maxage: "1d" }));
 
 //Publicly accessible API routes
 app.use("/api/public", require("./controllers/public/index"));

@@ -1,5 +1,5 @@
 const jwt = require("jwt-simple");
-const APP_CONFIG = require("../config/app");
+const APP_CONFIG = require("../../config/app");
 	
 
 module.exports = (req, res, next) => {

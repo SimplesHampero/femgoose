@@ -1,5 +1,5 @@
 const User = require("../../model/user");
-const ProcessorResponse = require("../../classes/processor-response");
+const ProcessorResponse = require("../../lib/classes/processor-response");
 
 const getUser = (query, cb) => {
     

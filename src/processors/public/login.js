@@ -1,7 +1,7 @@
 const jwt = require("jwt-simple");
-const APP_CONFIG = require("../../config/app");
+const APP_CONFIG = require("../../../config/app");
 const User = require("../../model/user");
-const ProcessorResponse = require("../../classes/processor-response");
+const ProcessorResponse = require("../../lib/classes/processor-response");
 
 
 const findUser = (email, cb) => {

@@ -6,10 +6,10 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "windows-dev": "SET NODE_ENV=development&& nodemon server.js",
-    "windows-prod": "SET NODE_ENV=production&& nodemon server.js",
-    "unix-dev": "NODE_ENV=development nodemon server.js",
-    "unix-prod": "NODE_ENV=production nodemon server.js"
+    "windows-dev": "SET NODE_ENV=development&& nodemon src/server.js",
+    "windows-prod": "SET NODE_ENV=production&& nodemon src/server.js",
+    "unix-dev": "NODE_ENV=development nodemon src/server.js",
+    "unix-prod": "NODE_ENV=production nodemon src/server.js"
   },
   "repository": {
     "type": "git",

@@ -123,6 +123,7 @@
             body: JSON.stringify(fields)
         })
         .then(function (res) {
+
             var successful = App.auth._checkApiResponse(res).success; 
                 
             res.json().then(function (data) {

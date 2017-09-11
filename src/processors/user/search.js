@@ -1,6 +1,6 @@
 const User = require("../../model/user");
-const ProcessorResponse = require("../../classes/processor-response");
-const JSHELP = require("../../classes/js-help");
+const ProcessorResponse = require("../../lib/classes/processor-response");
+const JSHELP = require("../../lib/classes/js-help");
 
 const getCount = (query, cb) => {
     
