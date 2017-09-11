@@ -2,4 +2,3 @@ node_modules/
 .vscode/
 .DS_STORE
 config/config.development.js
-config/config.production.js
