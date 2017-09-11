@@ -24,6 +24,6 @@ You'll want to either rename these files, removing the initial '~' character, or
 
 `config/config.production.js`
 
-Note: Config files are ignored. If you're developing as part of a team, each member of the team should setup their development config files. 
+**Note: Config files are ignored. If you're developing as part of a team, each member of the team should setup their development config files. **
 
-You may wish to remove the gitignore entry for config.production.js, this application assumes that you do not want to track this via source control. Simply edit the .gitigore file to alter this behaviour.
+**You may wish to remove the gitignore entry for config.production.js, this application assumes that you do not want to track this via source control. Simply edit the .gitigore file to alter this behaviour.**
