@@ -1,4 +1,4 @@
-const DB_CONFIG = require("../../config/db");
+const DB_CONFIG = require("../../config").database;
 const mongoose = require("mongoose");
 const CONNECTION_STRING = "mongodb://localhost:" + DB_CONFIG.port + "/" + DB_CONFIG.name;
 

@@ -1,5 +1,5 @@
 const jwt = require("jwt-simple");
-const APP_CONFIG = require("../../../config/app");
+const APP_CONFIG = require("../../../config").application;
 const User = require("../../model/user");
 const ProcessorResponse = require("../../lib/classes/processor-response");
 

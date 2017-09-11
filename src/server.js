@@ -1,5 +1,5 @@
 const express = require("express");
-const APP_CONFIG = require("../config/app");
+const APP_CONFIG = require("../config").application;
 const bodyParser = require("body-parser");
 const session = require("express-session");
 const MongoStore = require("connect-mongo")(session);
