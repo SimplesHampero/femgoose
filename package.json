@@ -11,10 +11,10 @@
     "windows-prod-restart": "SET NODE_ENV=production&& forever restart server.js",
     "windows-prod-stop": "forever stop server.js",
 
-    "unix-dev": "NODE_ENV=development gulp server.js",
+    "unix-dev": "NODE_ENV=development nodemon server.js",
     "unix-prod": "NODE_ENV=production forever start server.js",
     "unix-prod-restart": "NODE_ENV=production forever restart server.js",
-    "unix-prod-stop": "forever stop server.js",
+    "unix-prod-stop": "forever stop server.js"
   },
   "repository": {
     "type": "git",
