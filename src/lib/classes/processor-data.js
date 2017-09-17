@@ -21,7 +21,7 @@ class ProcessorData {
 		this.user = req.user || null;
 
 		//API connected devices (Mobile app..) will send x-client header with requests, web context is implied.
-		this.client = req.headers["x-client"] || req.client || "web";
+		this.client = (req.headers) ? (req.headers["x-client"] || (req.client || "web")) : "web";
 	}
 }
 
