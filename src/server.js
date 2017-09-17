@@ -90,6 +90,7 @@ fs.readdir("./src/controllers/private", (err, files) => {
 
 	//Final route, if nothing is hit, redirect to the public page
 	app.get("*", (req, res) => {
+		console.log("ASda")
 		res.status(404).redirect("/");
 	});
 

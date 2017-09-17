@@ -18,7 +18,8 @@ router.get("*", (req, res) => {
 	};
 
 	//Redirect them back to the public context if they're not authenticated.
-	if (!req.user) {
+	if (!req.session || !req.session.access_token) {
+		console.log("Redirecting user due to no user object found on the request. Private view ctrl.");	
 		console.warn("Redirecting user due to no user object found on the request. Private view ctrl.");	
 		return res.redirect("/");
 	} 

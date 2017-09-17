@@ -8,9 +8,10 @@ router.use(express.static(view_dir, {
 	maxAge: "7 days"
 }));
 
-router.get("*", (req, res, next) => {
+router.get("/", (req, res, next) => {
     
     if (req.user || (req.session && req.session.user)) {
+        console.log("Public redirect.");
         return res.redirect("/app");
     }
 
