@@ -65,11 +65,23 @@ app.use(/^\/(?!app).*/, require("./controllers/views/public"));
 //This protects anything inside the /api url namespace
 app.use(["/app", "/api"], require("./middleware/authenticate"));
 
-//Custom controller definitions
-app.use("/api/user", require("./controllers/private/user/index"));
+//Programmatically require all of the private API controllers 
+fs.readdir("./src/controllers/private", (err, files) => {
+	
+	if (err) {
+		console.warn("Error reading files for controller requires.");
+		console.warn(err);
+		process.exit(1);
+	}
 
-//Serve the app context's views
-app.use("/app", require("./controllers/views/private"));
+	files.forEach((file) => {
+		app.use(`/${file}`, require(`./controllers/private/${file}/index`));
+	});
 
-//Start the application
-App.run(app);
+	//Serve the app context's views
+	app.use("/app", require("./controllers/views/private"));
+
+	//Start the application, we're now live!
+	App.run(app);
+});
+
