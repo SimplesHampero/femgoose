@@ -26,12 +26,3 @@ class ProcessorData {
 }
 
 module.exports = ProcessorData;
-
-{
-	body: {
-		name: "sdffds",
-		age: 12
-	},
-	user: "WHO",
-
-}

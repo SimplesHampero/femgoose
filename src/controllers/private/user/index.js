@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const ProcessorData = require("../../lib/classes/processor-data");
-const GetProcessor = require("../../processors/user/get");
-const SearchProcessor = require("../../processors/user/search");
+const ProcessorData = require("../../../lib/classes/processor-data");
+const GetProcessor = require("../../../processors/user/get");
+const SearchProcessor = require("../../../processors/user/search");
 
 router.get("/", (req, res) => {
 	

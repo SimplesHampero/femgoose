@@ -6,6 +6,7 @@ const MongoStore = require("connect-mongo")(session);
 const App = require("./lib/classes/app");
 const compression = require("compression");
 const db = require("./db/main");
+const fs = require("fs");
 const es6Renderer = require("express-es6-template-engine");
 const path = require("path");
 
@@ -65,7 +66,7 @@ app.use(/^\/(?!app).*/, require("./controllers/views/public"));
 app.use(["/app", "/api"], require("./middleware/authenticate"));
 
 //Custom controller definitions
-app.use("/api/user", require("./controllers/user/index"));
+app.use("/api/user", require("./controllers/private/user/index"));
 
 //Serve the app context's views
 app.use("/app", require("./controllers/views/private"));
