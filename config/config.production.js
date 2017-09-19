@@ -1,6 +1,10 @@
 module.exports = {
     
         "application": {
+
+            //Base directory where all static file assets are stored
+            "asset_base_url": "./assets/dist/",
+
             //Default port to run the express application on
             "port": 6000,
             
