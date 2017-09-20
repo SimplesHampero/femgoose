@@ -11,9 +11,6 @@ const fs = require("fs");
 const es6Renderer = require("express-es6-template-engine");
 const path = require("path");
 
-//Perform intial initialization validation
-const initialised = App.validateEnv(); 
-
 //Check the app initialised OK
 if(initialised.result === false) {
 	console.log(initialised.message);

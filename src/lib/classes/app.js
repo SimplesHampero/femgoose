@@ -3,11 +3,19 @@ const JSHelp = require("./js-help");
 const numCPUs = require("os").cpus().length;
 const cluster = require("cluster");
 
+const express = require("express");
+
 class App {
 	
-	constructor () {}
+	constructor () {
+		this.express = new express();
+	}
 
-	static validateEnv () {
+	initControllers () {
+
+	}
+	
+	validateEnv () {
 
 		let return_data = {
 			result: true,
@@ -34,9 +42,17 @@ class App {
 		return return_data;
 	}
 
-	static run (app) {
+	run () {
 
 		let env = process.env.NODE_ENV;
+		let app = this.express;
+
+		let envValidation = this.validateEnv();
+
+		if (!envValidation.result) {
+			console.log(envValidation.message);
+			process.exit(0);
+		}
 
 		if (env === "development") {
 

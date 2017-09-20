@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
 
 	//Try decode the JWT token
 	try {	
-		decoded = jwt.decode(token, APP_CONFIG.auth.jwt_secret);
+		decoded = jwt.decode(token, APP_CONFIG.security.jwt_secret);
 	
 	} catch (e) {
 
