@@ -10,7 +10,7 @@
                                    ___
                                ,-""   \`.
                              ,'  _   e )\`-._    
-                            /  ,' \`-._<.===-' Where's my damn ${name} fool?!
+                            /  ,' \`-._<.===-' Where's my qua*ing ${name} fool?!
                            /  /
                           /  ;
               _          /   ;
