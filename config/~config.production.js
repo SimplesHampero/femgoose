@@ -22,7 +22,7 @@ module.exports = {
         "database": {
     
             //Name of the database
-            name: "fs-express-mongoose",
+            name: "femgoose",
     
             //Port running mongodb on the machine
             port: 27017,
