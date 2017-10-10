@@ -15,7 +15,7 @@ module.exports = {
         password_salt_iterations: 10
     },
     database: {
-        name: "fs-express-mongoose", // Name of the mongodb database
+        name: "femgoose", // Name of the mongodb database
         port: 27017 // Port running mongodb on the machine
     }
 }
