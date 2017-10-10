@@ -1,4 +1,4 @@
-# fs-express-mongoose
+# femgoose
 File system structure for an Express (NodeJS) +  Mongoose (MongoDB) API.
 
 
