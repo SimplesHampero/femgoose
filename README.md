@@ -6,13 +6,14 @@ File system structure for an Express (NodeJS) +  Mongoose (MongoDB) API.
 
 ### NPM Dependancies
 
-To install the application, firstly you'll want to install the project's dependancies from npm.
+To install the application, firstly you'll want to install the project's dependancies using either npm or yarn.
 
 `npm install`
 
+
 #### Development
 
-Nodemon is used to start / restart the application in development, you'll want to have this installed globally on your machine. You may need to use 'sudo' for this.
+Nodemon is used to run the application in development, you'll want to have this installed globally on your machine. You may need to use 'sudo' for this.
 
 `npm install -g nodemon` 
 
@@ -24,11 +25,13 @@ You'll then want to setup the applications configuration. You'll find two files 
 
 `config/~config.production.js`
 
-You'll want to either rename these files, removing the initial '~' character, or create new ones with the following names:
+Rename these files, removing the initial '~' character, or create new ones with the following names:
 
 `config/config.development.js`
 
 `config/config.production.js`
+
+The index file in the root folder of the config directory requires the config file based on the NODE_ENV environment variable. 
 
 **Note: Config files are ignored. If you're developing as part of a team, each member of the team should setup their development config files.**
 
