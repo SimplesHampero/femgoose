@@ -19,6 +19,10 @@ class ProcessorData {
 
 		//Store reference to the user
 		this.user = req.user || null;
+		
+		//Reference any files sent up
+		this.props.file = req.file || null;
+		this.props.files = req.files || null;
 
 		//API connected devices (Mobile app..) will send x-client header with requests, web context is implied.
 		this.client = (req.headers) ? (req.headers["x-client"] || (req.client || "web")) : "web";
