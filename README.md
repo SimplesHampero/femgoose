@@ -33,6 +33,8 @@ Rename these files, removing the initial '~' character, or create new ones with 
 
 The index file in the root folder of the config directory requires the config file based on the NODE_ENV environment variable. 
 
-**Note: Config files are ignored. If you're developing as part of a team, each member of the team should setup their development config files.**
+**Note: All application config files are ignored, i.e. 'config.NODE_ENV.js', where NODE_ENV is the value of the NODE_ENV environment variable. 
+
+If you're developing as part of a team, each member of the team should setup their development config files.**
 
 **You may wish to remove the gitignore entry for config.production.js, this application assumes that you do not want to track this via source control. Simply edit the .gitigore file to alter this behaviour.**
