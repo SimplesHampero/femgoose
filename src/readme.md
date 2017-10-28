@@ -10,8 +10,11 @@ This application ships with a single 'main' connection, which is a mongoose conn
 ## Lib  
 
 ## Middleware
+Place any API middleware functions inside the middleware directory, e.g. authentication middleware, etc.
 
 ## Model
+
+Save all of your database model and schema files inside the model directory.  
 
 ## Processors
 Processors are the building blocks of your API, a processor is an abstraction of a "job", each job in your system should be implemented through processors.
