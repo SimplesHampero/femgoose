@@ -8,6 +8,9 @@ If you want to connect to multiple data sources, place your database connection 
 This application ships with a single 'main' connection, which is a mongoose connection connected to the database name defined in the application's config file. 
 
 ## Lib  
+Place any reuseable code files in here, there's a differentiation between lib and middleware in the project.
+
+If a module / file is solely to be used as a piece of middlware in the API, place that inside the /src/middleware folder, otherwise the logical place for it is Lib.
 
 ## Middleware
 Place any API middleware functions inside the middleware directory, e.g. authentication middleware, etc.
