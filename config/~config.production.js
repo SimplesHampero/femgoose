@@ -16,6 +16,7 @@ module.exports = {
             //e.g. NODE_ENV=development node server.js || NODE_ENV=production forever start server.js
             "environments_available": [
                 "development",
+                "staging",
                 "production"
             ]	
         },
